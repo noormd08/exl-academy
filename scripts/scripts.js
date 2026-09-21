@@ -47,9 +47,12 @@ export function moveInstrumentation(from, to) {
 
 /**
  * load fonts.css and set a session storage flag
+ * @param {string} [codeBasePath] base path to load fonts.css from; defaults to the current
+ *   window.hlx.codeBasePath. Pass this explicitly from call sites that run after the header
+ *   block may have swapped codeBasePath to the EXL domain (see loadLazy).
  */
-async function loadFonts() {
-  await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+async function loadFonts(codeBasePath = window.hlx.codeBasePath) {
+  await loadCSS(`${codeBasePath}/styles/fonts.css`);
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
@@ -133,6 +136,12 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
+    // Audience of ONE hub: publish plan data and apply layout BEFORE blocks decorate,
+    // so each dumb block can read its slice from window.__ao1 during loadSection below.
+    if (main.querySelector('.ao1-hub')) {
+      const { default: initAo1Hub } = await import('./ao1-layout.js');
+      await initAo1Hub(main);
+    }
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
@@ -151,8 +160,6 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('header'));
-
   const main = doc.querySelector('main');
   await loadSections(main);
 
@@ -160,10 +167,29 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('footer'));
+  // Capture codeBasePath before loading header/footer: the header block temporarily
+  // swaps window.hlx.codeBasePath to the EXL domain while the remote header/footer load
+  // (restored once the header's 'header-loaded' event fires). All local sections/blocks
+  // have already resolved their own asset paths above, so loading header/footer last
+  // guarantees nothing local resolves a path during that swap. Use this captured value
+  // below rather than window.hlx.codeBasePath, since it may still be swapped at that point.
+  const localCodeBasePath = window.hlx.codeBasePath;
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadFonts();
+  // loadHeader/loadFooter (aem.js) unconditionally append a new block every time they're
+  // called — they have no built-in guard against running twice on the same page (e.g. if
+  // loadLazy is ever re-entered). Guard here so a second call can never leave two header/
+  // footer blocks (and two <exl-header>/<exl-footer> instances) sitting side by side.
+  const headerEl = doc.querySelector('header');
+  if (headerEl && !headerEl.querySelector(':scope > .block[data-block-name="header"]')) {
+    await loadHeader(headerEl);
+  }
+  const footerEl = doc.querySelector('footer');
+  if (footerEl && !footerEl.querySelector(':scope > .block[data-block-name="footer"]')) {
+    await loadFooter(footerEl);
+  }
+
+  loadCSS(`${localCodeBasePath}/styles/lazy-styles.css`);
+  loadFonts(localCodeBasePath);
 }
 
 /**
@@ -177,6 +203,12 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  // Guard against scripts.js's top-level side effect running more than once against the
+  // same document (e.g. if this module is ever evaluated a second time) — without this,
+  // loadEager/loadLazy would re-run and build duplicate header/footer blocks.
+  if (window.hlx.pageLoaded) return;
+  window.hlx.pageLoaded = true;
+
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

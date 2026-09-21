@@ -323,3 +323,29 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/*
+ * Audience of ONE My Hub container.
+ * The `.ao1-hub` section is the flex container; block wrappers are flattened with
+ * display:contents so the block elements themselves are the flex items. The controller
+ * (scripts/ao1-layout.js) sets `order` on each block element to reorder — CSS only, no
+ * DOM moves.
+ */
+main > .section.ao1-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0 24px;
+}
+
+main > .section.ao1-hub > div {
+  display: contents;
+}
+
+@media (width >= 900px) {
+  main > .section.ao1-hub {
+    padding: 0 32px;
+  }
+}

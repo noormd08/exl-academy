@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "mode": "prepare",
+    "aiUsed": false
+  },
+  "layout": {
+    "blocks": [
+      {
+        "id": "cohort-readiness",
+        "show": true,
+        "order": 1,
+        "emphasis": true
+      },
+      {
+        "id": "todays-plan",
+        "show": true,
+        "order": 2,
+        "emphasis": false
+      },
+      {
+        "id": "my-priorities",
+        "show": true,
+        "order": 3,
+        "emphasis": false
+      },
+      {
+        "id": "recommended",
+        "show": true,
+        "order": 4,
+        "emphasis": false
+      },
+      {
+        "id": "practice-next",
+        "show": false,
+        "order": 0,
+        "emphasis": false
+      }
+    ]
+  },
+  "blocksData": {
+    "cohort-readiness": {
+      "id": "learningProgram:171635",
+      "name": "Cohort for LP1",
+      "sessionDate": "Oct 5, 2026",
+      "startsInDays": 14,
+      "readiness": 40,
+      "prerequisites": [
+        {
+          "title": "Complete the intro module",
+          "done": true
+        },
+        {
+          "title": "Submit the pre-work survey",
+          "done": false
+        }
+      ]
+    },
+    "todays-plan": {
+      "items": [
+        {
+          "loId": "learningProgram:168995",
+          "title": "Flexible LP",
+          "progressPercent": 67,
+          "action": "Continue",
+          "reason": "Continue where you left off"
+        },
+        {
+          "loId": "learningProgram:170072",
+          "title": "LP_SUD",
+          "progressPercent": 50,
+          "action": "Continue",
+          "reason": "Continue where you left off"
+        }
+      ]
+    },
+    "my-priorities": {
+      "now": [
+        {
+          "loId": "learningProgram:171635",
+          "title": "Cohort for LP1",
+          "reason": "cohort — 1 of 2 prep items done",
+          "progressPercent": 0
+        }
+      ],
+      "next": [],
+      "thisWeek": [
+        {
+          "loId": "course:15851149",
+          "title": "123test",
+          "reason": "builds a skill you already have"
+        }
+      ],
+      "upcoming": []
+    },
+    "recommended": {
+      "items": [
+        {
+          "loId": "course:16902727",
+          "title": "AJO Course Test",
+          "type": "course",
+          "reason": "recommended to prepare for your cohort"
+        }
+      ]
+    }
+  }
+}

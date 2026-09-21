@@ -1,0 +1,89 @@
+.recommended {
+  --ao1-accent: #1473e6;
+
+  color: inherit;
+  font-family: inherit;
+}
+
+.recommended:empty {
+  display: none;
+}
+
+.recommended .hub-heading {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.recommended .rec-row {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.recommended .rec-card {
+  min-width: 0;
+}
+
+.recommended .rec-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+}
+
+.recommended .rec-link:hover {
+  border-color: var(--ao1-accent);
+  text-decoration: none;
+}
+
+.recommended .rec-meta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+.recommended .item-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.recommended .item-reason {
+  font-size: 0.8125rem;
+  color: #6b6b6b;
+}
+
+/* emphasis treatment */
+.recommended.is-emphasis {
+  padding: 24px;
+  border-radius: 12px;
+  background: #f5f9ff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+.recommended.is-emphasis .hub-heading {
+  font-size: 1.5rem;
+}
+
+@media (width >= 600px) {
+  .recommended .rec-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .recommended .rec-row {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

@@ -33,6 +33,10 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "AO1 Hub",
+              "value": "ao1-hub"
             }
           ]
         }
@@ -50,7 +54,13 @@
         "hero",
         "cards",
         "columns",
-        "fragment"
+        "fragment",
+        "todays-plan",
+        "cohort-readiness",
+        "my-priorities",
+        "recommended",
+        "my-goal",
+        "practice-next"
       ]
     }
   ]

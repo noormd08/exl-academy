@@ -1,0 +1,78 @@
+.cohort-readiness {
+  --ao1-accent: #1473e6;
+
+  color: inherit;
+  font-family: inherit;
+}
+
+.cohort-readiness:empty {
+  display: none;
+}
+
+.cohort-readiness .cohort-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cohort-readiness .hub-heading {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.cohort-readiness .cohort-date {
+  font-size: 0.8125rem;
+  color: #6b6b6b;
+  white-space: nowrap;
+}
+
+.cohort-readiness .cohort-meta {
+  margin: 6px 0 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ao1-accent);
+}
+
+.cohort-readiness .checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cohort-readiness .checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #4b4b4b;
+}
+
+.cohort-readiness .checklist-mark {
+  flex: 0 0 auto;
+  color: #9b9b9b;
+}
+
+.cohort-readiness .checklist-item.is-done {
+  color: #2b2b2b;
+}
+
+.cohort-readiness .checklist-item.is-done .checklist-mark {
+  color: #2d9d78;
+}
+
+/* emphasis (hero) treatment */
+.cohort-readiness.is-emphasis {
+  padding: 24px;
+  border-radius: 12px;
+  background: #f5f9ff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+.cohort-readiness.is-emphasis .hub-heading {
+  font-size: 1.5rem;
+}

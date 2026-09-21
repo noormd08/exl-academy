@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "mode": "learn",
+    "aiUsed": false
+  },
+  "layout": {
+    "blocks": [
+      {
+        "id": "recommended",
+        "show": true,
+        "order": 1,
+        "emphasis": true
+      },
+      {
+        "id": "my-goal",
+        "show": true,
+        "order": 2,
+        "emphasis": true
+      },
+      {
+        "id": "my-priorities",
+        "show": true,
+        "order": 3,
+        "emphasis": false
+      },
+      {
+        "id": "cohort-readiness",
+        "show": false,
+        "order": 0,
+        "emphasis": false
+      },
+      {
+        "id": "todays-plan",
+        "show": false,
+        "order": 0,
+        "emphasis": false
+      }
+    ]
+  },
+  "blocksData": {
+    "recommended": {
+      "items": [
+        {
+          "loId": "course:15851149",
+          "title": "123test",
+          "type": "course",
+          "duration": "45 min",
+          "reason": "a good place to start"
+        },
+        {
+          "loId": "course:16902727",
+          "title": "AJO Course Test",
+          "type": "course",
+          "duration": "1h 10m",
+          "reason": "expands your foundation"
+        },
+        {
+          "loId": "learningProgram:170072",
+          "title": "LP_SUD",
+          "type": "learningProgram",
+          "reason": "matches your interests"
+        }
+      ]
+    },
+    "my-goal": {
+      "name": "Become an AJO Practitioner",
+      "currentLevel": "Beginner",
+      "targetLevel": "Advanced",
+      "progress": 20,
+      "whyGoal": [
+        {
+          "code": "career"
+        },
+        {
+          "code": "certification"
+        },
+        {
+          "code": "unknown-xyz"
+        }
+      ]
+    },
+    "my-priorities": {
+      "now": [],
+      "next": [
+        {
+          "loId": "course:15851149",
+          "title": "123test",
+          "reason": "start learning",
+          "progressPercent": 0
+        }
+      ],
+      "thisWeek": [],
+      "upcoming": []
+    }
+  }
+}

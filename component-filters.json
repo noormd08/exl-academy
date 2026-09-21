@@ -15,7 +15,13 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "todays-plan",
+      "cohort-readiness",
+      "my-priorities",
+      "recommended",
+      "my-goal",
+      "practice-next"
     ]
   },
   {
