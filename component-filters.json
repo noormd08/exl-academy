@@ -16,12 +16,10 @@
       "cards",
       "columns",
       "fragment",
-      "todays-plan",
-      "cohort-readiness",
-      "my-priorities",
-      "recommended",
-      "my-goal",
-      "practice-next"
+      "pl-todays-plan",
+      "pl-cohort-readiness",
+      "pl-my-priorities",
+      "pl-recommended"
     ]
   },
   {

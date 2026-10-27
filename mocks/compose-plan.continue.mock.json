@@ -1,0 +1,11 @@
+{
+  "meta": { "mode": "continue", "aiUsed": false },
+  "layout": {
+    "blocks": [
+      { "id": "pl-todays-plan", "show": true, "order": 1, "emphasis": true, "reason": { "code": "CONTINUE_IN_PROGRESS" } },
+      { "id": "pl-cohort-readiness", "show": false, "order": 0, "emphasis": false },
+      { "id": "pl-my-priorities", "show": true, "order": 2, "emphasis": false, "reason": { "code": "PERSONALIZED_PRIORITIES" } },
+      { "id": "pl-recommended", "show": true, "order": 3, "emphasis": false, "reason": { "code": "BASED_ON_YOUR_SKILLS" } }
+    ]
+  }
+}

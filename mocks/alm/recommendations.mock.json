@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "id": "course:15851149",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "course",
+        "duration": 2700,
+        "skillNames": ["Adobe Analytics"],
+        "localizedMetadata": [{ "locale": "en-US", "name": "123test" }]
+      }
+    },
+    {
+      "id": "course:16902727",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "course",
+        "duration": 4200,
+        "skillNames": ["Journey Optimizer"],
+        "localizedMetadata": [{ "locale": "en-US", "name": "AJO Course Test" }]
+      }
+    },
+    {
+      "id": "learningProgram:170072",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "learningProgram",
+        "skillNames": ["Real-Time CDP"],
+        "localizedMetadata": [{ "locale": "en-US", "name": "LP_SUD" }]
+      }
+    }
+  ]
+}

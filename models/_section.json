@@ -35,8 +35,8 @@
               "value": "highlight"
             },
             {
-              "name": "AO1 Hub",
-              "value": "ao1-hub"
+              "name": "PL Hub",
+              "value": "pl-hub"
             }
           ]
         }
@@ -55,12 +55,10 @@
         "cards",
         "columns",
         "fragment",
-        "todays-plan",
-        "cohort-readiness",
-        "my-priorities",
-        "recommended",
-        "my-goal",
-        "practice-next"
+        "pl-todays-plan",
+        "pl-cohort-readiness",
+        "pl-my-priorities",
+        "pl-recommended"
       ]
     }
   ]

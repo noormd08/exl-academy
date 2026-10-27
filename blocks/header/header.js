@@ -32,6 +32,9 @@ async function loadExlHeader(header) {
   if (!header) throw new Error('Header element not found');
 
   window.hlx = window.hlx || {};
+  // Stop the external module's shared aem.live bootstrap from running its own page load
+  // (which would mount a second header/footer). This app owns page loading.
+  window.hlx.DO_NOT_LOAD_PAGE = true;
   window.exlRootDomain = envConfig.exlDomain;
   const navLinkOrigin = window.exlRootDomain;
   const lang = document.documentElement.lang || 'en';

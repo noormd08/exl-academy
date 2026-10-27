@@ -9,6 +9,9 @@ async function loadExlFooter(footer) {
   if (!footer) throw new Error('Footer element not found');
 
   window.hlx = window.hlx || {};
+  // Stop the external module's shared aem.live bootstrap from running its own page load
+  // (which would mount a second header/footer). This app owns page loading.
+  window.hlx.DO_NOT_LOAD_PAGE = true;
   const footerModule = await import(`${envConfig.exlDomain}/blocks/footer/footer.js`);
 
   // Swap codeBasePath so the remote footer's own internal asset resolution points at the

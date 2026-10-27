@@ -136,11 +136,13 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    // Audience of ONE hub: publish plan data and apply layout BEFORE blocks decorate,
-    // so each dumb block can read its slice from window.__ao1 during loadSection below.
-    if (main.querySelector('.ao1-hub')) {
-      const { default: initAo1Hub } = await import('./ao1-layout.js');
-      await initAo1Hub(main);
+    // Premium Learning My Hub: apply the compose-plan layout decisions (order/visibility)
+    // to the blocks BEFORE they decorate, so each block can read its decision from
+    // window.__plHub.decisions during loadSection below. The controller never renders
+    // content or calls ALM — each block fetches and renders its own data.
+    if (main.querySelector('.pl-hub')) {
+      const { default: initPlHub } = await import('./pl-layout.js');
+      await initPlHub(main);
     }
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

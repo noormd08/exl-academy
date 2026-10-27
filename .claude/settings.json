@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -vE \"baseline-browser|^$|npm-run-all|>|merge-json\")",
+      "Bash(node -e \"const d=require\\('./component-definition.json'\\);console.log\\(d.groups.find\\(g=>g.id==='blocks'\\).components.map\\(c=>c.id\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"const f=require\\('./component-filters.json'\\);console.log\\(f.find\\(x=>x.id==='section'\\).components.join\\(', '\\)\\)\")",
+      "Bash(awk 'NR==61{print length\": \"$0}' scripts/pl-alm.js)"
+    ]
+  }
+}

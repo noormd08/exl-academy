@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "id": "learningProgram:171635",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "learningProgram",
+        "localizedMetadata": [{ "locale": "en-US", "name": "Cohort for LP1" }]
+      },
+      "relationships": {
+        "enrollment": { "data": { "type": "learningObjectInstanceEnrollment", "id": "en-171635" } },
+        "instances": { "data": [{ "type": "learningObjectInstance", "id": "inst-171635" }] },
+        "subLOs": {
+          "data": [
+            { "type": "learningObject", "id": "course:900001" },
+            { "type": "learningObject", "id": "course:900002" }
+          ]
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "en-171635",
+      "type": "learningObjectInstanceEnrollment",
+      "attributes": { "state": "ENROLLED", "progressPercent": 0 }
+    },
+    {
+      "id": "inst-171635",
+      "type": "learningObjectInstance",
+      "attributes": { "state": "Active", "dateStart": "2026-12-07T15:00:00.000Z" }
+    },
+    {
+      "id": "course:900001",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "course",
+        "localizedMetadata": [{ "locale": "en-US", "name": "Complete the intro module" }]
+      },
+      "relationships": {
+        "enrollment": { "data": { "type": "learningObjectInstanceEnrollment", "id": "en-900001" } }
+      }
+    },
+    {
+      "id": "en-900001",
+      "type": "learningObjectInstanceEnrollment",
+      "attributes": { "state": "COMPLETED", "progressPercent": 100 }
+    },
+    {
+      "id": "course:900002",
+      "type": "learningObject",
+      "attributes": {
+        "loType": "course",
+        "localizedMetadata": [{ "locale": "en-US", "name": "Submit the pre-work survey" }]
+      },
+      "relationships": {
+        "enrollment": { "data": { "type": "learningObjectInstanceEnrollment", "id": "en-900002" } }
+      }
+    },
+    {
+      "id": "en-900002",
+      "type": "learningObjectInstanceEnrollment",
+      "attributes": { "state": "ENROLLED", "progressPercent": 0 }
+    }
+  ]
+}
