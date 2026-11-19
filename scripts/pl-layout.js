@@ -1,17 +1,17 @@
 /*
  * Premium Learning My Hub — layout controller.
  *
- * The compose-plan backend returns DECISIONS ONLY (no content): which blocks to show, in
- * what order, which to emphasize, and an optional reason per block. This controller:
- *   1. loads the plan (see scripts/pl-plan.js: live IMS-authed endpoint, or ?plmock),
+ * The layout contract contains decisions only: which blocks to show, in what order,
+ * which to emphasize, and an optional reason per block. This controller:
+ *   1. loads the closed safe layout (see scripts/pl-plan.js),
  *   2. publishes the decisions on window.__plHub.decisions (blocks read their own — incl.
  *      the reason code, for the "why" label; there is no block content here),
  *   3. applies order/visibility/emphasis to the block elements inside .pl-hub.
  *
- * It NEVER calls ALM and NEVER renders content — each block fetches and renders its own
- * data. Reordering is CSS `order` only (no DOM moves).
+ * It NEVER calls ALM or renders content. Block content requests remain disabled.
+ * Reordering is CSS `order` only (no DOM moves).
  *
- * Signed-out (loadPlan returns null): the hub is not rendered at all.
+ * The backend is not called until approved endpoint access control exists.
  */
 import loadPlan from './pl-plan.js';
 
@@ -26,21 +26,17 @@ export default async function initPlHub(root = document) {
 
   const plan = await loadPlan();
 
-  // Signed out / no valid IMS token: do not render the hub.
-  if (plan === null) {
-    hub.hidden = true;
-    return;
-  }
-
-  const blocks = plan.layout && Array.isArray(plan.layout.blocks) ? plan.layout.blocks : [];
-
-  // Publish decisions BEFORE blocks decorate so each block can read its own (incl. reason).
   // eslint-disable-next-line no-underscore-dangle
   window.__plHub = window.__plHub || {};
   // eslint-disable-next-line no-underscore-dangle
   const store = window.__plHub;
   store.decisions = {};
 
+  hub.hidden = false;
+
+  const blocks = plan.layout && Array.isArray(plan.layout.blocks) ? plan.layout.blocks : [];
+
+  // Publish decisions BEFORE blocks decorate so each block can read its own (incl. reason).
   blocks.forEach((block) => {
     if (!block || !block.id) return;
     store.decisions[block.id] = block;

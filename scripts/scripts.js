@@ -139,7 +139,7 @@ async function loadEager(doc) {
     // Premium Learning My Hub: apply the compose-plan layout decisions (order/visibility)
     // to the blocks BEFORE they decorate, so each block can read its decision from
     // window.__plHub.decisions during loadSection below. The controller never renders
-    // content or calls ALM — each block fetches and renders its own data.
+    // content or calls ALM; block content requests remain disabled.
     if (main.querySelector('.pl-hub')) {
       const { default: initPlHub } = await import('./pl-layout.js');
       await initPlHub(main);

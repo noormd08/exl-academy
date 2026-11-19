@@ -1,5 +1,5 @@
 import {
-  getDecision, almFetchCached, normalizeJsonApi, esc, loUrl,
+  getDecision, almFetchCached, normalizeJsonApi, inProgressItems, esc, loUrl,
 } from '../../scripts/pl-alm.js';
 import reasonText from '../../scripts/pl-reasons.js';
 
@@ -32,9 +32,7 @@ export default async function decorate(block) {
 
   try {
     const res = await almFetchCached('/learningObjects?include=enrollment');
-    const items = normalizeJsonApi(res)
-      .filter((lo) => lo.state === 'STARTED' && lo.progressPercent > 0 && lo.progressPercent < 100)
-      .slice(0, 3);
+    const items = inProgressItems(normalizeJsonApi(res)).slice(0, 3);
 
     if (!items.length) {
       block.innerHTML = '';
@@ -49,7 +47,8 @@ export default async function decorate(block) {
       ${why ? `<p class="pl-why">${esc(why)}</p>` : ''}
       <ul class="pl-list">${items.map(itemMarkup).join('')}</ul>`;
   } catch (e) {
-    // Empty data, 401, or any ALM error: self-hide quietly, never throw.
+    // eslint-disable-next-line no-console
+    console.warn('[pl-hub] todays-plan content unavailable');
     block.innerHTML = '';
     block.hidden = true;
   }

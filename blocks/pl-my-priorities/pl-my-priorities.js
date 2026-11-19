@@ -1,5 +1,5 @@
 import {
-  getDecision, almFetchCached, normalizeJsonApi, esc, loUrl,
+  getDecision, almFetchCached, normalizeJsonApi, inProgressItems, esc, loUrl,
 } from '../../scripts/pl-alm.js';
 import reasonText from '../../scripts/pl-reasons.js';
 
@@ -59,7 +59,10 @@ export default async function decorate(block) {
     const los = normalizeJsonApi(res);
 
     const groups = GROUPS
-      .map((g) => ({ label: g.label, items: los.filter((lo) => bucketOf(lo) === g.key) }))
+      .map((g) => ({
+        label: g.label,
+        items: g.key === 'now' ? inProgressItems(los) : los.filter((lo) => bucketOf(lo) === g.key),
+      }))
       .filter((g) => g.items.length);
 
     if (!groups.length) {
@@ -79,6 +82,8 @@ export default async function decorate(block) {
           <ul class="pl-list">${g.items.map(itemMarkup).join('')}</ul>
         </section>`).join('')}`;
   } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('[pl-hub] my-priorities content unavailable');
     block.innerHTML = '';
     block.hidden = true;
   }

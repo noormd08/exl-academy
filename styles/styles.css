@@ -358,6 +358,7 @@ main > .section.pl-hub [data-emphasis="true"] {
 }
 
 /* A block that self-hides (no data) or is hidden by the controller takes no space. */
+main > .section.pl-hub[hidden],
 main > .section.pl-hub [hidden] {
   display: none !important;
 }
