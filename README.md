@@ -32,6 +32,22 @@ npm run lint
 
 ## My Hub POC (backend access pending)
 
+### Synthetic For You demo
+
+Start the backend's `npm run start:mock-for-you` with its server-only Gemini API key,
+then run the local draft as described below. Open
+`http://localhost:3000/my-hub?mockForYou=1`. This local-only opt-in replaces My Hub
+with a generated page, a persona selector and a query field. The course data, learner
+progress and browsing activity are synthetic; cards are demo content, not links to
+real courses. The entered query and synthetic context are sent to Gemini, so do not
+enter private information. No ALM calls or RAG are used. The backend returns a single
+JSON array of section, suggestion, debug and completion events. Each section includes
+server-supplied HTML populated with data; the UI validates and decorates it. Suggestions
+can be inspected in the network response but are not shown on the page.
+
+Without the flag, or on a non-local hostname, the existing closed My Hub behavior
+is unchanged. The mock API is unauthenticated and is not suitable for public hosting.
+
 This enhances the four existing `pl-*` blocks, not the whole My Hub page. The frontend
 currently receives no backend content: the public Runtime endpoint is intentionally disabled
 with HTTP 503 pending an approved browser-safe access-control method. The frontend no longer

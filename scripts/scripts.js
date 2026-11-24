@@ -141,8 +141,16 @@ async function loadEager(doc) {
     // window.__plHub.decisions during loadSection below. The controller never renders
     // content or calls ALM; block content requests remain disabled.
     if (main.querySelector('.pl-hub')) {
-      const { default: initPlHub } = await import('./pl-layout.js');
-      await initPlHub(main);
+      const local = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      const mockForYou = new URLSearchParams(window.location.search).get('mockForYou') === '1';
+      if (local && mockForYou) {
+        const { default: initMockForYou } = await import('./mock-for-you.js');
+        initMockForYou(main);
+        loadCSS(`${window.hlx.codeBasePath}/styles/mock-for-you.css`);
+      } else {
+        const { default: initPlHub } = await import('./pl-layout.js');
+        await initPlHub(main);
+      }
     }
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
